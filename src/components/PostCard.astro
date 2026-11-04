@@ -1,18 +1,21 @@
 ---
 import FormattedDate from './FormattedDate.astro';
+import TagList from './TagList.astro';
 
 interface Props {
   title: string;
   description: string;
   pubDate: Date;
   slug: string;
+  tags?: string[];
 }
-const { title, description, pubDate, slug } = Astro.props;
+const { title, description, pubDate, slug, tags = [] } = Astro.props;
 ---
 <article class="post-card">
   <h2><a href={`${import.meta.env.BASE_URL}${slug}/`}>{title}</a></h2>
   <p class="date"><FormattedDate date={pubDate} /></p>
   <p>{description}</p>
+  <TagList tags={tags} />
 </article>
 
 <style>

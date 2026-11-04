@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import TagList from '../components/TagList.astro';
 
 interface Props {
   title: string;
@@ -9,8 +10,11 @@ interface Props {
   updatedDate?: Date;
   image?: string;
   minutes?: number;
+  tags?: string[];
+  related?: { id: string; title: string; description: string; shared: string[] }[];
 }
-const { title, description, pubDate, updatedDate, image, minutes } = Astro.props;
+const { title, description, pubDate, updatedDate, image, minutes, tags = [], related = [] } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title={title} description={description} image={image} pubDate={pubDate}>
   <article class="post">
@@ -21,10 +25,24 @@ const { title, description, pubDate, updatedDate, image, minutes } = Astro.props
         {updatedDate && <span> · updated <FormattedDate date={updatedDate} /></span>}
         {minutes && <span> · {minutes} min read</span>}
       </p>
+      <TagList tags={tags} />
     </header>
     <div class="prose">
       <slot />
     </div>
+    {related.length > 0 && (
+      <aside class="related" aria-label="Related posts">
+        <h2>Related posts</h2>
+        <ul>
+          {related.map((p) => (
+            <li>
+              <a href={`${base}${p.id}/`}>{p.title}</a>
+              <span class="shared">{p.shared.map((t) => `#${t}`).join(' ')}</span>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
   </article>
 </BaseLayout>
 
@@ -32,4 +50,10 @@ const { title, description, pubDate, updatedDate, image, minutes } = Astro.props
   .post-header { margin: 1.5rem 0 2rem; }
   h1 { font-size: clamp(1.8rem, 1.3rem + 2.2vw, 2.6rem); line-height: 1.12; letter-spacing: -0.025em; }
   .meta { margin-top: 0.75rem; font-family: var(--font-ui); font-size: 0.8rem; color: var(--color-text-muted); }
+  .related { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
+  .related h2 { font-size: 1.1rem; margin-bottom: 0.75rem; }
+  .related ul { list-style: none; padding: 0; }
+  .related li + li { margin-top: 0.6rem; }
+  .related a { font-family: var(--font-ui); font-weight: 600; text-decoration: none; }
+  .shared { display: block; font-family: var(--font-ui); font-size: 0.72rem; color: var(--color-text-muted); margin-top: 0.15rem; }
 </style>
