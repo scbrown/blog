@@ -68,7 +68,7 @@ So I built [Quipu](https://intigraph.github.io/quipu/) ([paper](https://arxiv.or
 
 > **Orientation: knowing your task, what it will affect, its history, and the rules that apply, at the moment you act.**
 
-*Discuss this post on [GitHub Discussions](https://github.com/intigraph/community/discussions).*
+*Discuss this post on [GitHub Discussions](https://github.com/intigraph/community/discussions/1).*
 
 ---
 
