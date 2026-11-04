@@ -1,5 +1,5 @@
 {
-  "name": "ai-gardener",
+  "name": "blog",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5"
+    "astro": "^5",
+    "@astrojs/rss": "^4"
   }
 }

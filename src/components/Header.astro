@@ -3,7 +3,9 @@ import ThemeToggle from './ThemeToggle.astro';
 ---
 <header>
   <nav>
-    <a href={`${import.meta.env.BASE_URL}`}>AI Gardener</a>
+    <a class="brand" href={`${import.meta.env.BASE_URL}`}>Steve Brown</a>
+    <span class="spacer"></span>
+    <a class="rss" href={`${import.meta.env.BASE_URL}rss.xml`}>RSS</a>
     <ThemeToggle />
   </nav>
 </header>
@@ -11,5 +13,8 @@ import ThemeToggle from './ThemeToggle.astro';
 <style>
   header { padding: 1.5rem 0; border-bottom: 1px solid var(--color-border); margin-bottom: 2rem; }
   nav { display: flex; justify-content: space-between; align-items: center; }
-  a { text-decoration: none; font-weight: 700; font-size: 1.25rem; }
+  nav { gap: 1rem; }
+  .spacer { flex: 1; }
+  .brand { font-family: var(--font-mono); text-decoration: none; font-weight: 700; font-size: 1.05rem; color: var(--color-text); }
+  .rss { font-family: var(--font-ui); font-size: 0.8rem; text-decoration: none; color: var(--color-text-muted); }
 </style>

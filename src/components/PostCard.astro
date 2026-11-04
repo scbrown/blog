@@ -10,7 +10,7 @@ interface Props {
 const { title, description, pubDate, slug } = Astro.props;
 ---
 <article class="post-card">
-  <h2><a href={`${import.meta.env.BASE_URL}blog/${slug}/`}>{title}</a></h2>
+  <h2><a href={`${import.meta.env.BASE_URL}${slug}/`}>{title}</a></h2>
   <p class="date"><FormattedDate date={pubDate} /></p>
   <p>{description}</p>
 </article>
