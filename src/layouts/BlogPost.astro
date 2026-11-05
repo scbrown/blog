@@ -12,8 +12,9 @@ interface Props {
   minutes?: number;
   tags?: string[];
   related?: { id: string; title: string; description: string; shared: string[] }[];
+  discussion?: number;
 }
-const { title, description, pubDate, updatedDate, image, minutes, tags = [], related = [] } = Astro.props;
+const { title, description, pubDate, updatedDate, image, minutes, tags = [], related = [], discussion } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title={title} description={description} image={image} pubDate={pubDate}>
@@ -43,6 +44,41 @@ const base = import.meta.env.BASE_URL;
         </ul>
       </aside>
     )}
+    {discussion && (
+      <section class="comments" aria-label="Comments">
+        <h2>Comments</h2>
+        <p class="comments-note">Comments are a <a href={`https://github.com/intigraph/community/discussions/${discussion}`}>GitHub Discussion</a>. Sign in with GitHub to reply here, or reply there.</p>
+        <div class="giscus"></div>
+        <script is:inline
+          src="https://giscus.app/client.js"
+          data-repo="intigraph/community"
+          data-repo-id="R_kgDOVjOF_A"
+          data-category="General"
+          data-category-id="DIC_kwDOVjOF_M4DKZpy"
+          data-mapping="number"
+          data-term={String(discussion)}
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="preferred_color_scheme"
+          data-lang="en"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async></script>
+        <script is:inline>
+          (function () {
+            function theme() { return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+            function send() {
+              var f = document.querySelector('iframe.giscus-frame');
+              if (f) f.contentWindow.postMessage({ giscus: { setConfig: { theme: theme() } } }, 'https://giscus.app');
+            }
+            window.addEventListener('message', function (e) { if (e.origin === 'https://giscus.app') send(); }, { once: true });
+            new MutationObserver(send).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+          })();
+        </script>
+      </section>
+    )}
   </article>
 </BaseLayout>
 
@@ -56,4 +92,7 @@ const base = import.meta.env.BASE_URL;
   .related li + li { margin-top: 0.6rem; }
   .related a { font-family: var(--font-ui); font-weight: 600; text-decoration: none; }
   .shared { display: block; font-family: var(--font-ui); font-size: 0.72rem; color: var(--color-text-muted); margin-top: 0.15rem; }
+  .comments { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
+  .comments h2 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .comments-note { font-family: var(--font-ui); font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 1rem; }
 </style>

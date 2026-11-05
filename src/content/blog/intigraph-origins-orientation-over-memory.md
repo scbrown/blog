@@ -3,6 +3,7 @@ title: "Intigraph Origins: Agent Orientation > Memory"
 description: "Agents are good at writing memories and bad at using them when they act. From markdown memory files and Human Input Lineage to Quipu, and why I think in terms of orientation."
 pubDate: 2026-11-04
 image: images/og-orientation.png
+discussion: 1
 tags: [intigraph-origins, agent-memory, orientation, knowledge-graphs, quipu, homelab]
 ---
 
