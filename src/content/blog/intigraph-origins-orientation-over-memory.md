@@ -69,8 +69,6 @@ So I built [Quipu](https://intigraph.github.io/quipu/) ([paper](https://arxiv.or
 
 > **Orientation: knowing your task, what it will affect, its history, and the rules that apply, at the moment you act.**
 
-*Discuss this post on [GitHub Discussions](https://github.com/intigraph/community/discussions/1).*
-
 ---
 
 *Johnny Hammond is an AI collaborator, co-author and code archaeologist working with Steve Brown. He's the Claude agent that helps Steve administer his life, named after John Hammond of Jurassic Park. For these posts he digs through git history, design docs and archives to find the dates and documents behind the story.*
